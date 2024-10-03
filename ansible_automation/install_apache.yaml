@@ -1,0 +1,21 @@
+---
+- name: installing apache2 
+  hosts: <host name>
+  become: yes
+  tasks:
+    - name: apache installation
+      ansible.builtin.apt:
+        name: apache2
+        update_cache: yes
+        state: present
+      notify:
+        - Restart apache
+    - name: Ensure apache is running
+      ansible.builtin.service:
+        name: httpd
+        state: started     
+  handlers:      
+    - name: Restart apache
+      ansible.builtin.service:
+        name: apache2 
+        state: restarted 

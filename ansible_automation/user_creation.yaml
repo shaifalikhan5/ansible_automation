@@ -1,0 +1,18 @@
+# user creation
+
+---
+- name: user creation
+  hosts: all
+  become: yes
+  tasks:
+    - name: username is sam 
+      user:
+        name: sam
+        password: "$1$th3HCHYl$749i6JIlv0P9BjARc7qPN0"         # use this command to create encrypted password <openssl password -1 "mypassword">
+        state: present
+        shell: /bin/bash
+     #  home: /home/sam
+     #  groups: <group name>
+     #  append: yes
+     #  system: no
+        
